@@ -1,0 +1,90 @@
+#include<stdio.h>
+
+#include<math.h>
+
+/*Program to calculate the roots of a quadratic equation*/
+
+int main()
+
+{
+
+int a,b,c;
+
+printf("Quadratic Equation is of the form: \n ax²+bc+c=0.\n");
+
+printf("\n");
+
+printf("Enter the value of a::\n");
+
+scanf("%d",&a);
+
+printf("Enter the value of b::\n");
+
+scanf("%d",&b);
+
+printf("Enter the value of c::\n");
+
+scanf("%d",&c);
+
+printf("\n");
+
+printf("You entered the Quadratic Equation:: \n %dx² + %dx + %d = 0.\n",a,b,c);
+
+printf("\n");
+
+float x1,x2;
+
+int delta_s = b*b - 4*a*c;
+
+int delta = sqrt(delta_s);
+
+if(a==0 && b==0)
+
+{
+
+printf("Such equation doesn't exists.\n");
+
+}
+
+else if(delta<0)
+
+{
+
+printf("The given equation has no roots!!.\n ");
+
+}
+
+else if(a==0 && b!=0)
+
+{
+
+printf("The equation has only one root.\n");
+
+float x= -c/b;
+
+printf("The root of equation is :: %f ",x);
+
+}
+
+else
+
+{
+
+int m=2*a;
+
+float n= delta/(float)m;
+
+x1= n-b; //formula x1= -b+ [√(b²-4ac)/2a]
+
+x2= -n-b; // formula x2= -b- [√(b²-4ac)/2a]
+printf("The roots of the given equation are::\n ");
+
+printf("\n");
+
+printf("x1= %f and x2= %f",x1,x2);
+
+}
+
+return 0;
+
+}
