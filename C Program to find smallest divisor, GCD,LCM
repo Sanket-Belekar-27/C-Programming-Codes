@@ -1,0 +1,79 @@
+#include<stdio.h>
+/*---------- Function prototyping / declaration ----------- */
+int isPrime(int n);
+int SmallestDivisor(int n);
+int GreatestDivisor(int,int);
+int LeastFactor(int,int);
+/*------------ Main output function ---------------- */
+int main()
+{
+    int num[2];
+    printf("C program to find the Smallest Divisor of a number, GCD and LCM of two numbers.\n");
+    printf("——————————————————————————————————————————\n");
+    printf("Enter the number:: \n"); //Input of num1
+    scanf("%d",&num[0]);
+    int num1 = num[0];
+    isPrime(num1);
+    int SmallDiv= SmallestDivisor(num1); // Function call
+    printf("The smallest Divisor of %d is %d.\n",num1,SmallDiv);
+    printf("\n");
+    printf("Enter another number :: \n"); // input of num2
+    scanf("%d",&num[1]);
+    int num2 = num[1];
+    int gcd=GreatestDivisor(num1,num2);// Function call 2
+    printf("The GCD of %d and %d is %d.\n",num1,num2,gcd);
+    int lcm= LeastFactor(num1,num2);// Function call 3
+    printf("The LCM of %d and %d is %d.",num1,num2,lcm);
+    return 0;
+}
+/*------------ Function Definitions -------------------*/
+/*--------- PRIME NUMBER FUNCTION -------------*/
+int isPrime(int n)
+{
+  int count=0;
+  for(int i=2;i<n;i++)
+  {
+    if(n%i==0) count ++;
+  }
+  if(count == 0) printf("The entered number is a PRIME NUMBER.\n");
+  else printf("The entered number is not a PRIME NUMBER.\n");  
+  printf("\n");
+}
+
+/*------------- SMALLEST DIVISOR FUNCTION ---------------*/
+int SmallestDivisor(int n)
+{
+  int test=0;
+  for(int i=2;i<=n;i++)
+  {
+    if(n%i==0) return i;
+  }
+}
+/*------------------- GCD FUNCTION -----------------*/
+int GreatestDivisor(int num1,int num2 )
+{
+    printf("\n");
+    int num[2];
+    num[0]=num1;
+    num[1]=num2;
+    int max=0;
+    int GCD=1;
+    for(int i=0;i<2;i++)
+    {
+      if(num[i]>max) max=num[i];
+    }
+    for(int i=1;i<max;i++)
+    {
+      if(num1%i==0 && num2%i==0)
+      {
+        GCD=i;
+      }
+    }
+    return GCD;
+}
+/*-------—---- LCM FUNCTION ----------------*/
+int LeastFactor(int num1,int num2)
+{
+  int LCM= (num1*num2)/GreatestDivisor(num1,num2);
+  return LCM;
+}
