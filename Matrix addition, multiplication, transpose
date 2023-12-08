@@ -1,0 +1,94 @@
+/*Name : Sanket K. Belekar
+Std : F.Y. B.Tech
+Div : C
+Roll No. 04
+Problem Statement:
+Draw a flowchart/write an algorithm / a pseudocode to perform the following operations:
+1. Addition of Two Matrices
+2. Multiplication of Two Matrices
+3. Transpose of a given matrix*/
+
+
+#include<stdio.h>
+#define MAX 10
+void inputMatrix(int rows, int cols, int matrix[MAX][MAX]) {
+printf("Enter the elements of the matrix:\n");
+for(int i = 0; i < rows; i++) {
+for(int j = 0; j < cols; j++) {
+scanf("%d", &matrix[i][j]);
+}
+}
+}
+void displayMatrix(int rows, int cols, int matrix[MAX][MAX]) {
+printf("Matrix:\n");
+for(int i = 0; i < rows; i++) {
+for(int j = 0; j < cols; j++) {
+printf("%d\t", matrix[i][j]);
+}
+printf("\n");
+}
+}
+void addMatrix(int rows, int cols, int matrix1[MAX][MAX], int matrix2[MAX][MAX], int
+result[MAX][MAX]) {
+for(int i = 0; i < rows; i++) {
+for(int j = 0; j < cols; j++) {
+result[i][j] = matrix1[i][j] + matrix2[i][j];
+}
+}
+}
+
+void multiplyMatrix(int rows1, int cols1, int rows2, int cols2, int matrix1[MAX][MAX], int
+matrix2[MAX][MAX], int result[MAX][MAX]) {
+for(int i = 0; i < rows1; i++) {
+for(int j = 0; j < cols2; j++) {
+result[i][j] = 0;
+for(int k = 0; k < cols1; k++) {
+result[i][j] += matrix1[i][k] * matrix2[k][j];
+}
+}
+}
+}
+void transposeMatrix(int rows, int cols, int matrix[MAX][MAX], int result[MAX][MAX]) {
+for(int i = 0; i < rows; i++) {
+for(int j = 0; j < cols; j++) {
+result[j][i] = matrix[i][j];
+}
+}
+}
+int main() {
+int rows1, rows2, cols1, cols2;
+printf("Enter the dimensions of the first matrix:\n");
+printf("Rows: ");
+scanf("%d", &rows1);
+printf("Columns: ");
+scanf("%d", &cols1);
+int matrix1[MAX][MAX];
+inputMatrix(rows1, cols1, matrix1);
+printf("Enter the dimensions of the second matrix:\n");
+printf("Rows: ");
+scanf("%d", &rows2);
+printf("Columns: ");
+scanf("%d", &cols2);
+int matrix2[MAX][MAX];
+inputMatrix(rows2, cols2, matrix2);
+if(rows1 != rows2 || cols1 != cols2) {
+printf("The matrices cannot be added or multiplied due to incompatible dimensions.\n");
+return 1;
+
+}
+int result[MAX][MAX];
+// Addition
+addMatrix(rows1, cols1, matrix1, matrix2, result);
+printf("\nResult of Addition:\n");
+displayMatrix(rows1, cols1, result);
+// Multiplication
+multiplyMatrix(rows1, cols1, rows2, cols2, matrix1, matrix2, result);
+printf("\nResult of Multiplication:\n");
+displayMatrix(rows1, cols2, result); // Displaying the correct dimensions for the result matrix
+// Transpose
+int transposeResult[MAX][MAX];
+transposeMatrix(rows1, cols1, matrix1, transposeResult);
+printf("\nTranspose of matrix:\n");
+displayMatrix(cols1, rows1, transposeResult); // Displaying the transposed matrix
+return 0;
+}
